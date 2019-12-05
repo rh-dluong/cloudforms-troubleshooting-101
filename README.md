@@ -19,10 +19,23 @@ Example:
 How to read these lines:
 
 - local = Do the logs belong to the appliance?  N = no, Y = Yes
-- master = Is the appliance the master appliance?
+- master = This makes sure that servers are heartbeating and when they don't, marking that server as not responding so that the roles can fail over to another server that is responding (1 per Region)
 - name = name of the appliance
 - zone = zone of the appliance
 - roles = Roles enabled on the appliance
+
+Next check to see if the MiqQueue is healthy:
+
+The MiqQueue is the queueing system that we use where all workers pull from. You want to ensure that nothing is growing in number as we check every 5 minutes as this will cause slowness in the environment. Each of the log lines the the Zone and the workers (i.e- smartstate,ems_metrics_processor,etc...) and the count of tasks that are queued up.  
+
+`# grep "MiqQueue count for state=\[\"ready\"\]" evm.log`
+
+Example:
+```
+[----] I, [2019-12-02T12:25:24.775076 #2444:e16f54]  INFO -- : Q-task_id([log_status]) MIQ(MiqServer.log_system_status) [EVM Server (2236)] MiqQueue count for state=["ready"] by zone and role: {"Worker Appliance Zone"=>{"ems_metrics_processor"=>985, nil=>6}, "Database Appliance Zone"=>{"smartstate"=>1, "ems_metrics_processor"=>6, "event"=>182, nil=>1}, "UI Appliance Zone"=>{"ems_operations"=>1071, "event"=>127, "ems_metrics_processor"=>6, "smartstate"=>1}, "default"=>{nil=>17, "ems_inventory"=>1, "smartstate"=>1, "ems_metrics_processor"=>3}}
+
+```
+
 
 Then determine if they're the relevant logs, grep out all the errors and warnings.  In general, once a relevant error log line is found, do a search to see if a bug is already open for it:
 
@@ -45,6 +58,7 @@ Again, once you find relevant error, copy the time stamp, do a less, and then se
 This is a log to see errors that happen in the UI.  This time, I like to do an additional grep for `FATAL`:
 
 `# grep -Ei 'fatal|error|warn' production.log`
+
 
 ## top_output.log
 
