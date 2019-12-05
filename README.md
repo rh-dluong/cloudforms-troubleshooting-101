@@ -32,7 +32,7 @@ Then I get the timestamp for the relevant error/warning and then do a less on th
 
 ## automation.log
 
-This is the main log for provisioning issues and issues dealing with automate domains.  This is the log you will want to search when customer reports provisioning issues.  Sometimes it will be due to custom code, and Red Hat offical support policy is that we don't troubleshoot customer's custom code they have created.
+This is the main log for provisioning issues and issues dealing with automate domains.  This is the log you will want to search when customer reports provisioning issues.  Sometimes it will be due to custom code, and Red Hat offical support policy is that Red Hat doesn't troubleshoot customer's custom code they have created.
 
 Determine if there is an automate role on the specific appliance logs you have, from there, do a similar grep for the `evm.log`:
 
