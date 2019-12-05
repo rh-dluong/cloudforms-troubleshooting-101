@@ -33,7 +33,6 @@ The MiqQueue is the queueing system that we use where all workers pull from. You
 Example:
 ```
 [----] I, [2019-12-02T12:25:24.775076 #2444:e16f54]  INFO -- : Q-task_id([log_status]) MIQ(MiqServer.log_system_status) [EVM Server (2236)] MiqQueue count for state=["ready"] by zone and role: {"Worker Appliance Zone"=>{"ems_metrics_processor"=>985, nil=>6}, "Database Appliance Zone"=>{"smartstate"=>1, "ems_metrics_processor"=>6, "event"=>182, nil=>1}, "UI Appliance Zone"=>{"ems_operations"=>1071, "event"=>127, "ems_metrics_processor"=>6, "smartstate"=>1}, "default"=>{nil=>17, "ems_inventory"=>1, "smartstate"=>1, "ems_metrics_processor"=>3}}
-
 ```
 
 Then determine if they're the relevant logs, grep out all the errors and warnings.  In general, once a relevant error log line is found, do a search to see if a bug is already open for it:
