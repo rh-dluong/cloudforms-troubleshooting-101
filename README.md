@@ -51,6 +51,9 @@ This is a log to see errors that happen in the UI.  This time, I like to do an a
 If you see any memory exceeded errors or refresh problems, it's good to check this log in order to see if the appliance is overburdened.  This can happen if there are too many roles enabled on the appliance.
 Something that can remedy this is to either provision more appliances, adjust memory settings for workers, or more evenly distribute roles among appliances.
 
+
+## Provider specific logs
+
 If it's a provider specific issue, these are the logs you need to look into, here are the more common providers:
 
 - `aws.log` - AWS
