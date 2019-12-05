@@ -36,7 +36,6 @@ Example:
 
 ```
 
-
 Then determine if they're the relevant logs, grep out all the errors and warnings.  In general, once a relevant error log line is found, do a search to see if a bug is already open for it:
 
 `# grep -E ' E, | W, ' evm.log`
